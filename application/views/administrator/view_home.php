@@ -4,7 +4,7 @@
                 <span class="info-box-icon bg-aqua"><i class="fa fa-users"></i></span>
                 <div class="info-box-content">
                   <span class="info-box-text">Konsumen</span>
-                  <?php $jmla = $this->db->query("SELECT * FROM tb_konsumen")->num_rows(); ?>
+                  <?php $jmla = $this->db->query("SELECT * FROM tb_user")->num_rows(); ?>
                   <span class="info-box-number"><?php echo $jmla; ?></span>
                 </div><!-- /.info-box-content -->
               </div><!-- /.info-box -->

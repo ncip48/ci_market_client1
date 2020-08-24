@@ -26,7 +26,7 @@ echo "<center><h2 style='margin-bottom:3px;'>ORDERS REPORT</h2>
       $no = 1;
       foreach ($record->result_array() as $row){
       if ($row['proses']=='0'){ $proses = '<i class="text-danger">Pending</i>'; $color = 'danger'; $text = 'Pending'; }elseif($row['proses']=='1'){ $proses = '<i class="text-warning">Proses</i>'; $color = 'warning'; $text = 'Proses'; }elseif($row['proses']=='2'){ $proses = '<i class="text-info">Konfirmasi</i>'; $color = 'info'; $text = 'Konfirmasi'; }else{ $proses = '<i class="text-success">Packing </i>'; $color = 'success'; $text = 'Packing'; }
-      $total = $this->db->query("SELECT a.kode_transaksi, a.kurir, a.service, a.proses, a.ongkir, e.nama_kota, f.nama_provinsi, sum((b.harga_jual*b.jumlah)-(c.diskon*b.jumlah)) as total, sum(c.berat*b.jumlah) as total_berat FROM `tb_penjualan` a JOIN tb_penjualan_detail b ON a.id_penjualan=b.id_penjualan JOIN tb_produk c ON b.id_produk=c.id_produk JOIN tb_konsumen d ON a.id_pembeli=d.id_konsumen JOIN tb_kota e ON d.kota_id=e.kota_id JOIN tb_provinsi f ON e.provinsi_id=f.provinsi_id where a.kode_transaksi='$row[kode_transaksi]'")->row_array();
+      $total = $this->db->query("SELECT a.kode_transaksi, a.kurir, a.service, a.proses, a.ongkir, e.nama_kota, f.nama_provinsi, sum((b.harga_jual*b.jumlah)-(c.diskon*b.jumlah)) as total, sum(c.berat*b.jumlah) as total_berat FROM `tb_penjualan` a JOIN tb_penjualan_detail b ON a.id_penjualan=b.id_penjualan JOIN tb_produk c ON b.id_produk=c.id_produk JOIN tb_user d ON a.id_pembeli=d.id_konsumen JOIN tb_kota e ON d.kota_id=e.kota_id JOIN tb_provinsi f ON e.provinsi_id=f.provinsi_id where a.kode_transaksi='$row[kode_transaksi]'")->row_array();
       
       echo "<tr><td>$no</td>
                 <td>$row[kode_transaksi]</td>

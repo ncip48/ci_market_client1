@@ -279,7 +279,7 @@
 
 @media (min-width: 992px) and (max-width: 1199px) { 
 	.main-header .header-inner-right .input-group {
-		width: 85%;
+		#width: 85%;
 		margin-bottom: 10px;
 	}
 
@@ -378,7 +378,7 @@
 	}
 	 
 	.main-header .header-inner-right .input-group {
-		width: 80%;
+		#width: 80%;
 		margin-bottom: 10px;
 	}
 
@@ -559,8 +559,12 @@
 
  	#slider-rev-container {
  		position: absolute;
- 		top:0;
-		 left:0;
+ 		top:58px;
+		left:0;
+	}
+
+	.product-mobile{
+		margin-top:225px;
 	}
 
 	.input-cart-search-2 {
@@ -704,7 +708,13 @@
 	}
 
 	.main-header #inner-header .logo-container {
-		display:none;
+		display: flex;
+    /* justify-content: center; */
+    align-items: center;
+	}
+
+	.main-header #inner-header .header-inner-right .input-group{
+		display: none;
 	}
 
 	.daleman-logo {
@@ -712,19 +722,28 @@
 	}
 
 	#inner-cart {
-		padding-top: 15px;
+		#padding-top: 15px;
 		background-color: #fff;
+	}
+
+	.logo-container-2{
+		padding: 0px;
+	}
+
+	.search-cart-header{
+		padding: 0px;
 	}
 
 	.keranjang-name i {
 		position: absolute;
-		top: 14px;
+		#top: 14px;
 	}
 
 	.keranjang-name p {
 		position: absolute;
-		left: 60px;
-    	top: 13px;
+		left: 50px;
+		font-size: 1.15rem;
+    	#top: 13px;
 	}
 
 	.keranjang-name a {
@@ -733,16 +752,16 @@
 	}
 
 	.keranjang-name {
-		margin-left: 5px;
+		margin-left: 15px;
 		border-left: 0;
 		color: #ee4d2d;
-		font-size: 1.25rem;
+		font-size: 1.5rem;
 		line-height: 1.875rem;
 		height: 2rem;
 		padding-left: 0px;
-		margin-bottom: .0625rem;
+		margin-bottom: 10px;
 		text-transform: capitalize;
-		margin-top: 7px;
+		margin-top: 10px;
 	}
 
 	#header #header-top {
@@ -757,8 +776,8 @@
 	}
 
 	#main-nav-container #header {
-		background: transparent;
-		color: #f9f8f4;
+		#background: transparent;
+		#color: #f9f8f4;
 	}
 
 	#main-nav-container .header-cart {
@@ -780,7 +799,7 @@
 	.main-header #inner-header .header-inner-right {
 		#margin-bottom:70px;
 		#margin-bottom:9px;
-		margin-bottom:0px;
+		margin-bottom:10px;
 		padding-left: 10px;
 		padding-right: 10px;
 	}
@@ -803,18 +822,43 @@
 		border-bottom:none;
 	}
 	
+	.icon-dekstop-top-hide, .mobile-view{
+		display: block;
+	}
+
+	#inner-header .header-inner-right .header-inner-right-wrapper{
+		display: flex;
+  justify-content: center;
+  align-items: center;
+	}
+
+	.dropdown-cart {
+		margin-left: 8px;
+	}
+
+	.logo-container a img{
+		height: 35px;
+	}
+
 	.main-header .dropdown-cart-menu-container {
-		position: absolute;
+		#position: absolute;
 		#right:15px;
 		#right:45px;
 		#top:69px;
-		right: 50px;
-    	top: 0px;
-		z-index:1000;
+		#right: 50px;
+		right: 0px;
+		top: 0px;
+		#z-index:1000;
+	}
+
+	.icon-top-hide{
+		display: none;
 	}
 
 	#main-nav-container.fixed {
-		position: absolute;
+		position: fixed;
+		#background: #35424f;
+		background:#ee4d2d;
 		top: 0;
 		left: 0;
 		z-index: 999;
@@ -927,7 +971,7 @@
 		overflow-x: scroll;
 		white-space: nowrap;
 		max-width: 100%;
-		padding: 1rem;
+		#padding: 1rem;
 		}
 
 	.carousel-indicators .active {
@@ -960,12 +1004,20 @@
 		border-radius: 0 3px 3px 0;
 	}
 
+	.pad-5{
+		padding: 0 5px 0 5px;
+	}
+
+	#content .mt-2{
+		margin-top: 0px!important;
+	}
+
 	.icon-shopping-cart {
 		font-size: 1.3em;
 	}
 
 	.dropdown-cart {
-		margin-top:4px;
+		#margin-top:4px;
 	}
 
 	.img-wrap{
@@ -1018,6 +1070,7 @@
 	.main-header .dropdown-cart-menu-container {
 		#margin-top:12px;
 		margin-top:0px;
+		margin:0px !important;
 	}
 
 	.btn-group.open .dropdown-toggle {

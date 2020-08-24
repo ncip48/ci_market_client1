@@ -504,10 +504,10 @@ INSERT INTO `tb_konfirmasi` (`id_konfirmasi_pembayaran`, `id_penjualan`, `total_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_konsumen`
+-- Table structure for table `tb_user`
 --
 
-CREATE TABLE `tb_konsumen` (
+CREATE TABLE `tb_user` (
   `id_konsumen` int(11) NOT NULL,
   `username` varchar(60) NOT NULL,
   `password` text NOT NULL,
@@ -524,10 +524,10 @@ CREATE TABLE `tb_konsumen` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_konsumen`
+-- Dumping data for table `tb_user`
 --
 
-INSERT INTO `tb_konsumen` (`id_konsumen`, `username`, `password`, `nama_lengkap`, `email`, `jenis_kelamin`, `tanggal_lahir`, `tempat_lahir`, `alamat_lengkap`, `kota_id`, `no_hp`, `foto`, `tanggal_daftar`) VALUES
+INSERT INTO `tb_user` (`id_konsumen`, `username`, `password`, `nama_lengkap`, `email`, `jenis_kelamin`, `tanggal_lahir`, `tempat_lahir`, `alamat_lengkap`, `kota_id`, `no_hp`, `foto`, `tanggal_daftar`) VALUES
 (1, 'robby', '882c306525a9f885466520ba2aa6b10377b029cb569311fc17161d40df6e1bab7eb6103fcf567ce3a1375e77cc7db1928efec90cd0a379303fc2adb159bb1d14', 'Robby Prihandaya', 'robby.prihandaya@gmail.com', 'Laki-laki', '1988-08-07', 'Padang', 'Jl. Angkasa Pura Jaya Merdeka', 372, '081267771341', 'robby1.jpg', '2017-04-05'),
 (2, 'arsenio', 'ddd1e1ecf9826e4ae7aba6ebd09589d65880638f984357aa688cf265fbc8b3e8781ca573d27c13cafc99e4db9d5c38801bd270df6f0bf6d18cd877fefb159f6f', 'Muhammad Arsenio', 'muhammad.arsenio@gmail.com', 'Laki-laki', '1988-09-27', 'Padang', 'jl. Siti Nurbayani Sogi roh', 0, '081267889912', '', '2017-04-07'),
 (3, 'dewiit', 'af9f95fb734ca6abb2d02a6a169eca2bbf33feb3c25ed266e4129cbed937150699954d72dcb44fee7c9e9acebaf4e7283aabc64a6e56f1b8e6a5a0e8e0551324', 'Dewiit Safitri', 'dewiitt.safitri@gmail.com', 'Perempuan', '1989-06-16', 'Padang', 'Jl. Linggar Jati Lamo', 372, '098912334456', '', '2017-04-08'),
@@ -3438,9 +3438,9 @@ ALTER TABLE `tb_konfirmasi`
   ADD PRIMARY KEY (`id_konfirmasi_pembayaran`);
 
 --
--- Indexes for table `tb_konsumen`
+-- Indexes for table `tb_user`
 --
-ALTER TABLE `tb_konsumen`
+ALTER TABLE `tb_user`
   ADD PRIMARY KEY (`id_konsumen`);
 
 --
@@ -3634,9 +3634,9 @@ ALTER TABLE `tb_konfirmasi`
   MODIFY `id_konfirmasi_pembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `tb_konsumen`
+-- AUTO_INCREMENT for table `tb_user`
 --
-ALTER TABLE `tb_konsumen`
+ALTER TABLE `tb_user`
   MODIFY `id_konsumen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --

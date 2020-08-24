@@ -2,7 +2,35 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Produk extends CI_Controller {
-	public function index(){
+	function index(){
+		$jumlah= $this->model_app->view('tb_produk')->num_rows();
+			$config['base_url'] = base_url().'produk/index';
+			$config['total_rows'] = $jumlah;
+			$config['per_page'] = 12; 	
+			if ($this->uri->segment('3')==''){
+				$dari = 0;
+			}else{
+				$dari = $this->uri->segment('3');
+			}
+			if (is_numeric($dari)) {
+				$data['iklantengah'] = $this->model_iklan->iklan_tengah();
+				if ($this->input->post('cari')!=''){
+					$data['title'] = title();
+					$data['judul'] = "Hasil Pencarian keyword - ".filter($this->input->post('cari'));
+					$data['record'] = $this->model_app->cari_produk(filter($this->input->post('cari')));
+				}else{
+					$data['title'] = title();
+					$data['judul'] = 'Semua Produk';
+					$data['record'] = $this->model_app->view_ordering_limit('tb_produk','id_produk','DESC',$dari,$config['per_page']);
+					$this->pagination->initialize($config);
+				}
+					$this->template->load('phpmu-one/template','phpmu-one/view_home',$data);
+			}else{
+				redirect('main');
+			}
+	}
+
+	public function indexs(){
 		$type = $_GET['type'];
 		$page = $_GET['page'];
 		$search = $_GET['search'];
@@ -317,7 +345,7 @@ class Produk extends CI_Controller {
 					$this->model_app->insert('tb_penjualan_detail',$dataa);
 				}
 				$this->model_app->delete('tb_penjualan_temp',array('session'=>$this->session->idp));
-				$kons = $this->model_app->view_join_where_one('tb_konsumen','tb_kota','kota_id',array('id_konsumen'=>$this->session->id_konsumen))->row_array();
+				$kons = $this->model_app->view_join_where_one('tb_user','tb_kota','kota_id',array('id_konsumen'=>$this->session->id_konsumen))->row_array();
 
 				$data['title'] = 'Transaksi Success';
 				$data['email'] = $kons['email'];
@@ -447,7 +475,7 @@ class Produk extends CI_Controller {
 					if ($cek->num_rows()>=1){
 						$data['title'] = 'Data Pelanggan';
 						$data['kota'] = $this->model_app->view_ordering('tb_kota','kota_id','ASC');
-						$data['rows'] = $this->model_app->view_join_where_one('tb_konsumen','tb_kota','kota_id',array('id_konsumen'=>$this->session->id_konsumen))->row_array();
+						$data['rows'] = $this->model_app->view_join_where_one('tb_user','tb_kota','kota_id',array('id_konsumen'=>$this->session->id_konsumen))->row_array();
 						$data['record'] = $this->model_app->view_join_rows('tb_penjualan_temp','tb_produk','id_produk',array('session'=>$this->session->idp),'id_penjualan_detail','ASC');
 						$this->template->load('phpmu-one/template','phpmu-one/view_checkouts',$data);
 					}else{
@@ -460,7 +488,7 @@ class Produk extends CI_Controller {
 	}
 
 	function print_invoice(){
-		$data['rows'] = $this->model_app->view_join_where_one('tb_konsumen','tb_kota','kota_id',array('id_konsumen'=>$this->session->id_konsumen))->row_array();
+		$data['rows'] = $this->model_app->view_join_where_one('tb_user','tb_kota','kota_id',array('id_konsumen'=>$this->session->id_konsumen))->row_array();
 		$data['record'] = $this->db->query("SELECT a.kode_transaksi, b.*, c.nama_produk, c.satuan, c.berat, c.diskon FROM `tb_penjualan` a JOIN tb_penjualan_detail b ON a.id_penjualan=b.id_penjualan JOIN tb_produk c ON b.id_produk=c.id_produk where a.kode_transaksi='".$this->uri->segment(3)."'");
 		$this->load->view('phpmu-one/pengunjung/print_invoice',$data);
 	}

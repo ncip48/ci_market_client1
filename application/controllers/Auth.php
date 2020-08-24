@@ -13,6 +13,10 @@ class Auth extends CI_Controller {
 		$this->load->view('phpmu-one/view_city',$data);
 	}
 
+	public function aksiregister(){
+		echo "Under Maintenance";
+	}
+
 	public function register(){
 		if (isset($_POST['submit'])){
 			$data = array('username'=>$this->input->post('a'),
@@ -23,7 +27,7 @@ class Auth extends CI_Controller {
 	        			  'kota_id'=>$this->input->post('h'),
 						  'no_hp'=>$this->input->post('j'),
 						  'tanggal_daftar'=>date('Y-m-d H:i:s'));
-			$this->model_app->insert('tb_konsumen',$data);
+			$this->model_app->insert('tb_user',$data);
 			$id = $this->db->insert_id();
 			$this->session->set_userdata(array('id_konsumen'=>$id, 'level'=>'konsumen'));
 			redirect('members/profile');
@@ -60,6 +64,8 @@ class Auth extends CI_Controller {
 		}else{
 			$data['title'] = 'Formulir Pendaftaran';
 			$data['kota'] = $this->model_app->view_ordering('tb_kota','kota_id','ASC');
+			$json = file_get_contents("http://api.shipping.esoftplay.com/province/");
+			$data['provinsi'] = json_decode($json);
 			$this->template->load('phpmu-one/template','phpmu-one/view_register',$data);
 		}
 	}
@@ -68,12 +74,12 @@ class Auth extends CI_Controller {
 		if (isset($_POST['login'])){
 				$username = strip_tags($this->input->post('a'));
 				$password = hash("sha512", md5(strip_tags($this->input->post('b'))));
-				$cek = $this->db->query("SELECT * FROM tb_konsumen where username='".$this->db->escape_str($username)."' AND password='".$this->db->escape_str($password)."'");
+				$cek = $this->db->query("SELECT * FROM tb_user where username='".$this->db->escape_str($username)."' AND password='".$this->db->escape_str($password)."'");
 			    $row = $cek->row_array();
 			    $total = $cek->num_rows();
 				if ($total > 0){
 					$this->session->set_userdata(array('id_konsumen'=>$row['id_konsumen'], 'level'=>'konsumen'));
-					redirect('members/profile');
+					redirect('/');
 				}else{
 					$data['title'] = 'Gagal Login';
 					$this->template->load('phpmu-one/template','phpmu-one/view_login_error',$data);
@@ -87,14 +93,14 @@ class Auth extends CI_Controller {
 	public function lupass(){
 		if (isset($_POST['lupa'])){
 			$email = strip_tags($this->input->post('a'));
-			$cek = $this->db->query("SELECT * FROM tb_konsumen where email='".$this->db->escape_str($email)."'");
+			$cek = $this->db->query("SELECT * FROM tb_user where email='".$this->db->escape_str($email)."'");
 		    $row = $cek->row_array();
 		    $total = $cek->num_rows();
 			if ($total > 0){
 				$identitas = $this->db->query("SELECT * FROM identitas where id_identitas='1'")->row_array();
 				$randompass = generateRandomString(10);
 				$passwordbaru = hash("sha512", md5($randompass));
-				$this->db->query("UPDATE tb_konsumen SET password='$passwordbaru' where email='".$this->db->escape_str($email)."'");
+				$this->db->query("UPDATE tb_user SET password='$passwordbaru' where email='".$this->db->escape_str($email)."'");
 
 				if ($row['jenis_kelamin']=='Laki-laki'){ $panggill = 'Bpk.'; }else{ $panggill = 'Ibuk.'; }
 				$email_tujuan = $row['email'];

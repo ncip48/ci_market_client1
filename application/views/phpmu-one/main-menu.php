@@ -15,7 +15,7 @@
               <small class='pull-right'>
               <?php
                 if ($this->session->id_konsumen != ''){
-                  $ksm = $this->db->query("SELECT * FROM tb_konsumen where id_konsumen='".$this->session->id_konsumen."'")->row_array();
+                  $ksm = $this->db->query("SELECT * FROM tb_user where id_konsumen='".$this->session->id_konsumen."'")->row_array();
                   echo "Selamat Datang! <a href='".base_url()."members/profile'>$ksm[nama_lengkap]</a> &raquo; <a href='".base_url()."members/logout'>Logout</a>";
                 }else{
                   $topm = $this->model_menu->top_menu();

@@ -152,6 +152,6 @@ class Model_app extends CI_model{
     }
 
     function profile_konsumen($id){
-        return $this->db->query("SELECT a.id_konsumen, a.username, a.nama_lengkap, a.email, a.jenis_kelamin, a.tanggal_lahir, a.tempat_lahir, a.alamat_lengkap, a.no_hp, a.tanggal_daftar, a.foto, b.kota_id, b.nama_kota as kota FROM `tb_konsumen` a LEFT JOIN tb_kota b ON a.kota_id=b.kota_id where a.id_konsumen='$id'");
+        return $this->db->query("SELECT a.id_konsumen, a.username, a.nama_lengkap, a.email, a.jenis_kelamin, a.tanggal_lahir, a.tempat_lahir, a.alamat_lengkap, a.no_hp, a.tanggal_daftar, a.foto, b.kota_id, b.nama_kota as kota FROM `tb_user` a LEFT JOIN tb_kota b ON a.kota_id=b.kota_id where a.id_konsumen='$id'");
     }
 }

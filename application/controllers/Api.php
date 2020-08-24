@@ -255,7 +255,7 @@ class Api extends REST_Controller
         $password = hash("sha512", md5(strip_tags($obj['password'])));
         //$username = strip_tags($this->input->post('username'));
         //$password = hash("sha512", md5(strip_tags($this->input->post('password'))));
-        $query = $this->db->query("SELECT * FROM tb_konsumen where username='" . $username . "' AND password='" . $password . "'");
+        $query = $this->db->query("SELECT * FROM tb_user where username='" . $username . "' AND password='" . $password . "'");
         $check = $query->num_rows();
 
         if ($check > 0) {
@@ -283,7 +283,7 @@ class Api extends REST_Controller
         $id_konsumen = strip_tags($obj['id_konsumen']);
         //$username = strip_tags($this->input->post('username'));
         //$password = hash("sha512", md5(strip_tags($this->input->post('password'))));
-        $query = $this->db->query("SELECT * FROM tb_konsumen where id_konsumen='" . $id_konsumen . "'");
+        $query = $this->db->query("SELECT * FROM tb_user where id_konsumen='" . $id_konsumen . "'");
         $check = $query->num_rows();
 
         if ($check > 0) {

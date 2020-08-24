@@ -23,6 +23,7 @@
     <link href="<?php echo base_url(); ?>asset/themes/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo base_url(); ?>asset/themes/css/nprogress.css">
     <link href="<?php echo base_url(); ?>asset/themes/remixicon/remixicon.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>asset/themes/css/icomoon.css" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo base_url(); ?>asset/themes/css/prettyPhoto.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>asset/themes/css/owl.carousel.css">
@@ -36,11 +37,11 @@
     <div class='root'>
     <?php include 'header.php' ?>
     <?php echo $contents; ?>
-    
     <?php include 'footer.php' ?>
+    <?php include 'bottom_nav.php' ?>
 
     <?php $this->model_main->kunjungan(); ?>
-
+    <?php include "modal.php"; ?>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -64,8 +65,7 @@
     <script src="<?php echo base_url(); ?>asset/themes/js/plugins.js"></script>
     <script src="<?php echo base_url(); ?>asset/themes/js/gijgo.min.js"></script>
     <script src="<?php echo base_url(); ?>asset/themes/js/main.js"></script>
-    </div>
+  </div>
     <script src="<?php echo base_url(); ?>asset/themes/js/app.js"></script>
-    <?php include "modal.php"; ?>
   </body>
 </html>

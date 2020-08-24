@@ -43,7 +43,7 @@ class Konfirmasi extends CI_Controller {
 
 				$data['total'] = $this->db->query("SELECT a.kode_transaksi, a.kurir, a.service, a.proses, a.ongkir, sum((b.harga_jual*b.jumlah)-(c.diskon*b.jumlah)) as total, sum(c.berat*b.jumlah) as total_berat FROM `tb_penjualan` a JOIN tb_penjualan_detail b ON a.id_penjualan=b.id_penjualan JOIN tb_produk c ON b.id_produk=c.id_produk where a.id_penjualan='$row[id_penjualan]'")->row_array();
 				$data['rows'] = $this->model_app->view_where('tb_penjualan',array('id_penjualan'=>$row['id_penjualan']))->row_array();
-				$data['ksm'] = $this->model_app->view_where('tb_konsumen',array('id_konsumen'=>$this->session->id_konsumen))->row_array();
+				$data['ksm'] = $this->model_app->view_where('tb_user',array('id_konsumen'=>$this->session->id_konsumen))->row_array();
 				$this->template->load('phpmu-one/template','phpmu-one/pengunjung/view_konfirmasi_pembayaran',$data);
 			}else{
 				$this->template->load('phpmu-one/template','phpmu-one/pengunjung/view_konfirmasi_pembayaran',$data);
@@ -63,7 +63,7 @@ class Konfirmasi extends CI_Controller {
 			if ($cek->num_rows()>=1){
 				$data['title'] = 'Tracking Order '.$kode_transaksi;
 				$data['kode_transaksi'] = $kode_transaksi;
-				$data['rows'] = $this->db->query("SELECT * FROM tb_penjualan a JOIN tb_konsumen b ON a.id_pembeli=b.id_konsumen JOIN tb_kota c ON b.kota_id=c.kota_id where a.kode_transaksi='$kode_transaksi'")->row_array();
+				$data['rows'] = $this->db->query("SELECT * FROM tb_penjualan a JOIN tb_user b ON a.id_pembeli=b.id_konsumen JOIN tb_kota c ON b.kota_id=c.kota_id where a.kode_transaksi='$kode_transaksi'")->row_array();
 				$data['record'] = $this->db->query("SELECT a.kode_transaksi, b.*, c.nama_produk, c.satuan, c.berat, c.diskon, c.produk_seo FROM `tb_penjualan` a JOIN tb_penjualan_detail b ON a.id_penjualan=b.id_penjualan JOIN tb_produk c ON b.id_produk=c.id_produk where a.kode_transaksi='".$kode_transaksi."'");
 				$data['total'] = $this->db->query("SELECT a.resi, a.kode_transaksi, a.kurir, a.service, a.proses, a.ongkir, sum((b.harga_jual*b.jumlah)-(c.diskon*b.jumlah)) as total, sum(c.berat*b.jumlah) as total_berat FROM `tb_penjualan` a JOIN tb_penjualan_detail b ON a.id_penjualan=b.id_penjualan JOIN tb_produk c ON b.id_produk=c.id_produk where a.kode_transaksi='".$kode_transaksi."'")->row_array();
 				$this->template->load('phpmu-one/template','phpmu-one/pengunjung/view_tracking_view',$data);

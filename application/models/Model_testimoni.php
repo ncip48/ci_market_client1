@@ -1,7 +1,7 @@
 <?php 
 class Model_testimoni extends CI_model{
     function testimoni(){
-        return $this->db->query("SELECT a.*, b.nama_lengkap, b.id_konsumen FROM testimoni a JOIN tb_konsumen b ON a.id_konsumen=b.id_konsumen ORDER BY a.id_testimoni DESC");
+        return $this->db->query("SELECT a.*, b.nama_lengkap, b.id_konsumen FROM testimoni a JOIN tb_user b ON a.id_konsumen=b.id_konsumen ORDER BY a.id_testimoni DESC");
     }
 
     function testimoni_update(){
@@ -12,7 +12,7 @@ class Model_testimoni extends CI_model{
     }
 
     function testimoni_edit($id){
-        return $this->db->query("SELECT a.*, b.nama_lengkap, b.id_konsumen FROM testimoni a JOIN tb_konsumen b ON a.id_konsumen=b.id_konsumen where a.id_testimoni='$id'");
+        return $this->db->query("SELECT a.*, b.nama_lengkap, b.id_konsumen FROM testimoni a JOIN tb_user b ON a.id_konsumen=b.id_konsumen where a.id_testimoni='$id'");
     }
 
     function testimoni_delete($id){
@@ -20,7 +20,7 @@ class Model_testimoni extends CI_model{
     }
 
     function public_testimoni($sampai, $dari){
-        return $this->db->query("SELECT a.*, b.nama_lengkap, b.foto, b.id_konsumen, b.jenis_kelamin FROM testimoni a JOIN tb_konsumen b ON a.id_konsumen=b.id_konsumen  where a.aktif='Y' ORDER BY a.id_testimoni DESC LIMIT $dari, $sampai");
+        return $this->db->query("SELECT a.*, b.nama_lengkap, b.foto, b.id_konsumen, b.jenis_kelamin FROM testimoni a JOIN tb_user b ON a.id_konsumen=b.id_konsumen  where a.aktif='Y' ORDER BY a.id_testimoni DESC LIMIT $dari, $sampai");
     }
 
     function hitung_testimoni(){

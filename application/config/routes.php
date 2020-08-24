@@ -55,6 +55,8 @@ $route = array(
     'login' => 'login',
     'agenda' => 'agenda',
     'auth' => 'auth',
+    'login' => 'auth/login',
+    'daftar' => 'auth/register',
     'berita' => 'berita',
     'contact' => 'contact',
     'download' => 'download',
@@ -69,7 +71,10 @@ $route = array(
     'video' => 'video',
     'keranjang' => 'produk/keranjang',
     'json' => 'json',
-    'api' => 'api'
+    'api' => 'api',
+    'user/(:any)' => 'members/profile_member',
+    'user/(:any)/following' => 'members/following_member',
+    'user/(:any)/follower' => 'members/follower_member'
 );
 
 $route['(:any)'] = 'ref/$1/$2';

@@ -799,7 +799,7 @@ class Administrator extends CI_Controller {
 
 	function konsumen(){
 		cek_session_akses('konsumen',$this->session->id_session);
-		$data['record'] = $this->model_app->view_ordering('tb_konsumen','id_konsumen','DESC');
+		$data['record'] = $this->model_app->view_ordering('tb_user','id_konsumen','DESC');
 		$this->template->load('administrator/template','administrator/mod_konsumen/view_konsumen',$data);
 	}
 
@@ -828,7 +828,7 @@ class Administrator extends CI_Controller {
 	function delete_konsumen(){
         cek_session_akses('konsumen',$this->session->id_session);
 		$id = array('id_konsumen' => $this->uri->segment(3));
-		$this->model_app->delete('tb_konsumen',$id);
+		$this->model_app->delete('tb_user',$id);
 		redirect('administrator/konsumen');
 	}
 
@@ -1146,7 +1146,7 @@ class Administrator extends CI_Controller {
 		if ($this->uri->segment(3)!=''){
 			$kode_transaksi = filter($this->uri->segment(3));
 			$data['title'] = 'Tracking Order '.$kode_transaksi;
-			$data['rows'] = $this->db->query("SELECT * FROM tb_penjualan a JOIN tb_konsumen b ON a.id_pembeli=b.id_konsumen JOIN tb_kota c ON b.kota_id=c.kota_id where a.kode_transaksi='$kode_transaksi'")->row_array();
+			$data['rows'] = $this->db->query("SELECT * FROM tb_penjualan a JOIN tb_user b ON a.id_pembeli=b.id_konsumen JOIN tb_kota c ON b.kota_id=c.kota_id where a.kode_transaksi='$kode_transaksi'")->row_array();
 			$data['record'] = $this->db->query("SELECT a.kode_transaksi, b.*, c.nama_produk, c.satuan, c.berat, c.diskon, c.produk_seo FROM `tb_penjualan` a JOIN tb_penjualan_detail b ON a.id_penjualan=b.id_penjualan JOIN tb_produk c ON b.id_produk=c.id_produk where a.kode_transaksi='".$kode_transaksi."'");
 			$data['total'] = $this->db->query("SELECT a.resi, a.id_penjualan, a.kode_transaksi, a.kurir, a.service, a.proses, a.ongkir, sum((b.harga_jual*b.jumlah)-(c.diskon*b.jumlah)) as total, sum(c.berat*b.jumlah) as total_berat FROM `tb_penjualan` a JOIN tb_penjualan_detail b ON a.id_penjualan=b.id_penjualan JOIN tb_produk c ON b.id_produk=c.id_produk where a.kode_transaksi='".$kode_transaksi."'")->row_array();
 			$this->template->load('administrator/template','administrator/mod_penjualan/view_tracking',$data);

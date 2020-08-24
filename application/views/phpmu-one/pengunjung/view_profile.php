@@ -1,6 +1,7 @@
+<p>
 <?php 
   if (trim($row['foto'])==''){ $foto_user = 'users.gif';  }else{ $foto_user = $row['foto'];  }
-echo "<p class='sidebar-title'><span class='glyphicon glyphicon-triangle-right'></span> Data Profile Anda 
+echo "<p class='sidebar-title' style='padding-top:140px'><span class='glyphicon glyphicon-triangle-right'></span> Data Profile Anda 
         <a class='btn btn-success btn-xs pull-right' href='".base_url()."members/edit_profile'><span class='glyphicon glyphicon-edit'></span> Edit Data</a>
         <a style='margin-right:5px' class='btn btn-info btn-xs pull-right' href='#uploadfoto' data-toggle='modal' data-target='#uploadfoto'>Ganti Foto</a>
       </p>

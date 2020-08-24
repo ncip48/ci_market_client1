@@ -5,7 +5,7 @@ class Model_members extends CI_model{
     }
 
     function konsumen(){
-        return $this->db->query("SELECT * FROM tb_konsumen ORDER BY id_konsumen DESC");
+        return $this->db->query("SELECT * FROM tb_user ORDER BY id_konsumen DESC");
     }
 
     function keterangan($id){
@@ -13,7 +13,7 @@ class Model_members extends CI_model{
     }
 
     function profile_view($id){
-        return $this->db->query("SELECT * FROM `tb_konsumen` a where a.id_konsumen='$id'");
+        return $this->db->query("SELECT * FROM `tb_user` a where a.id_konsumen='$id'");
     }
 
     function modupdatefoto(){
@@ -34,7 +34,7 @@ class Model_members extends CI_model{
 
         $datadb = array('foto'=>$hasil['file_name']);
         $this->db->where('id_konsumen',$this->session->id_konsumen);
-        $this->db->update('tb_konsumen',$datadb);
+        $this->db->update('tb_user',$datadb);
     }
 
     function modupdatefotoreseller(){
@@ -82,6 +82,6 @@ class Model_members extends CI_model{
                             'no_hp'=>$this->db->escape_str(strip_tags($this->input->post('l'))));
         }
         $this->db->where('id_konsumen',$id);
-        $this->db->update('tb_konsumen',$datadbd);
+        $this->db->update('tb_user',$datadbd);
     }
 }
